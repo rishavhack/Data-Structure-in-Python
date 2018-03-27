@@ -29,3 +29,20 @@ print c1
 print"\n"
 z = ['blue', 'red', 'blue', 'yellow', 'blue', 'red']
 print Counter(z)
+print "\n"
+col_count = Counter(z)
+print col_count
+col = ['blue','red','yellow','green']
+for color in col:
+	print color,col_count[color]
+
+print "\n"
+coun = Counter(a=1,b=2,c=3)
+print coun
+print list(coun.elements())
+print"\n"
+
+
+coun = Counter(a=1, b=2, c=3, d=120, e=1, f=219)
+for letter,count in coun.most_common(3):
+	print '%s:%d'%(letter,count)
