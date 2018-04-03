@@ -23,3 +23,7 @@ List = [1, 4, True, 800, "python", 27, "hello"]
 # using choice function in random module for choosing 
 # a random element from a set such as a list
 print random.choice(List)
+import datetime
+from datetime import date
+import time
+print time.time()
