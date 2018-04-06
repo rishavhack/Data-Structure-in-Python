@@ -14,4 +14,4 @@ while (True):
 		break;
 
 cam.release()
-cv2.destoryAllWindows()
+cv2.destroyAllWindows()
