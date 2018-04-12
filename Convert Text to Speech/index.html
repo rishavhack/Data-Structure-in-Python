@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Web Speech API Demo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://cdn.pubnub.com/pubnub-3.15.1.min.js"></script>
+<script src="https://cdn.pubnub.com/sdk/pubnub-angular/pubnub-angular-3.2.1.min.js"></script>
+<script>
+	angular.module('PubNubAngularApp', ["pubnub.angular.service"])
+  .controller('MySpeechCtrl', function($rootScope, $scope, Pubnub) {
+  $scope.theText = "";
+  $scope.nextElementId="item1";
+  $scope.fullDetail={};
+  // On Click of a button
+  $scope.dictateIt = function () {
+      
+      
+    // Construct the api function..
+      var recognition = new webkitSpeechRecognition();
+       //onresult property
+       recognition.onresult = function (event) {
+        $scope.$apply(function() {
+           // resultIndex read-only property      
+          for (var i = event.resultIndex; i < event.results.length; i++) {
+            if (event.results[i].isFinal) {
+              // result event
+              $scope.theText  += event.results[i][0].transcript;
+               console.log($scope.theText);
+              if($scope.theText == 'next' || $scope.theText == 'tab')
+              {
+              	var x = document.getElementById($scope.nextElementId).nextElementSibling;
+	              $scope.nextElementId = x.id;
+	              x.focus();
+	              $scope.fullDetail = x;
+	              $scope.theText ='';
+	              $scope.dictateIt();
+              }
+              if($scope.theText == 'hi')
+              {
+              	console.log("Enter");
+              	$scope.theText ='';
+              	$scope.writeSomething();
+              }
+              
+              /*var e = $.Event('keyup');
+              e.which = 13;
+              console.log(e.which = 13);*/
+              
+            }
+          }
+        });
+      };
+      recognition.start();
+   };
+   $scope.writeSomething = function()
+   {
+   	console.log("tghvb");
+   	var recognition = new webkitSpeechRecognition();
+       //onresult property
+       var modelName = $scope.fullDetail.attributes[1].nodeValue;
+       var scope = '$scope.'
+       recognition.onresult = function (event) {
+        $scope.$apply(function() {
+           // resultIndex read-only property   
+           var txtx =scope+modelName ;
+          for (var i = event.resultIndex; i < event.results.length; i++) {
+            if (event.results[i].isFinal)
+             {
+              // result event
+               txtx += event.results[i][0].transcript;
+              console.log(txtx);
+              }
+          }
+        });
+      };
+      recognition.start();
+   };
+});
+  
+ </script>
+  </head>
+  <body>
+  <div class="container" ng-app="PubNubAngularApp" ng-controller="MySpeechCtrl">
+ <div>
+  <textarea id="item1" ng-model="theText" rows="4" cols="40" class="form-control"></textarea>
+  <textarea id="item3" ng-model="theText1" rows="4" cols="40" class="form-control"></textarea>
+  <textarea id="item4" ng-model="theText2" rows="4" cols="40" class="form-control"></textarea>
+</div>
+  <button class="btn btn-primary" type="submit" ng-click="dictateIt()" value="Dictate it!" >Dictate it!</button>
+  <button>Hello</button>
+  <button>hi</button>
+  <button>Every</button>
+</div>
+  </body>
+</html>
