@@ -14,7 +14,7 @@ while (True):
 		cv2.rectangle(img,(x,y),(x+w,y+h),(0,0,255),2)
 		id,conf=rec.predict(gray[y:y+h,x:x+w]);
 		if(id==1):
-			id="Mahesh";
+			id="Rishav";
 		elif(id==2):
 			id="Vinod";
 		elif(id==3):
