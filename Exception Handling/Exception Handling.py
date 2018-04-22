@@ -31,3 +31,11 @@ def AbyB(a,b):
 
 AbyB(2.0,3.0)
 AbyB(3.0,3.0)
+
+#Raising Exception:
+print "\n"
+try:
+	raise NameError('Hi There')
+except NameError:
+	print "An Exception"
+	raise
