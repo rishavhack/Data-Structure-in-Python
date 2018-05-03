@@ -14,8 +14,10 @@
       <div>
         <textarea id="item1" ng-model="obj.theText" rows="4" cols="40" class="form-control"></textarea>
         <textarea id="item3" ng-model="obj.theText1" rows="4" cols="40" class="form-control"></textarea>
-        <textarea id="item4" ng-model="obj.theText2" rows="4" cols="40" class="form-control"></textarea>
-      </div>
+      <select id="item5" ng-model="obj.theText2" ng-focus="expand()">
+         <option ng-repeat="item in units" ng-value="item.id" ng-selected="obj.theText2">{{item.label}}</option>
+    </select>
+    </div>
   <button class="btn btn-primary" type="submit" ng-click="dictateIt()" value="Dictate it!" >Dictate it!</button>
 </div>
   </body>

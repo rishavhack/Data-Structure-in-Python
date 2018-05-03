@@ -1,11 +1,20 @@
 angular.module('PubNubAngularApp', ["pubnub.angular.service"])
   .controller('MySpeechCtrl', function($rootScope, $scope, Pubnub) {
 
+  $scope.units = [
+        {'id': 10, 'label': 'Mango'},
+        {'id': 11, 'label': 'Apple'},
+        {'id': 12, 'label': 'busy'},
+
+    ];
+    
+   $scope.obj.theText2 = 11;
   $scope.nextElementId="item1";
   $scope.fullDetail={};
   $scope.detailItem;
   $scope.obj = {};
   $scope.obj.theText = '';
+   $scope.obj.dropdowns = 11;
   // On Click of a button
   $scope.dictateIt = function () {
     // Construct the api function..
