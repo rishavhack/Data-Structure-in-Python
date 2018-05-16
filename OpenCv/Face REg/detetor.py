@@ -14,10 +14,8 @@ while (True):
 		cv2.rectangle(img,(x,y),(x+w,y+h),(0,0,255),2)
 		id,conf=rec.predict(gray[y:y+h,x:x+w]);
 		if(id==1):
-			id="Rishav";
+			id="Annu";
 		elif(id==2):
-			id="Vinod";
-		elif(id==3):
 			id="Rishav";
 		cv2.cv.PutText(cv2.cv.fromarray(img),str(id),(x,y+h),font,255);
 	cv2.imshow("Face",img);
